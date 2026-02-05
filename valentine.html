@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sarilala 💗</title>
+<style>
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(120deg,#ff6fa5,#ffc2d1);
+overflow:hidden;
+color:white;
+}
+
+/* Gallery */
+.gallery{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+.gallery img{
+width:120px;
+height:120px;
+border-radius:15px;
+object-fit:cover;
+}
+
+/* Buttons */
+button{
+padding:15px 25px;
+font-size:20px;
+border:none;
+border-radius:12px;
+margin:10px;
+cursor:pointer;
+}
+
+#yes{background:#ff3e7f;color:white;}
+#no{background:#ff8fab;color:white;position:relative}
+
+/* Floating hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+}
+
+/* Love letter */
+.letter{
+background:rgba(255,255,255,0.2);
+margin:20px;
+padding:15px;
+border-radius:15px;
+}
+
+/* Firework spark */
+.spark{
+position:fixed;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+}
+</style>
+</head>
+<body>
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<h1 id="question">Sarilala 💗 will you be my Valentine?</h1>
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
+<div class="letter">
+💌 Hey Sarilala,<br><br>
+I made this just for you because you're special to me 🥹  
+I love spending time with you and I wanted to ask you in a fun way.  
+No pressure — just vibes, smiles, and good energy 💗<br><br>
+— urfavgenbo🥹
+</div>
+<h2 id="countdown"></h2>
+<script>
+
+/* Countdown */
+let target=new Date("Feb 14, 2026 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=target-now;
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((diff%(1000*60*60))/(1000*60));
+let s=Math.floor((diff%(1000*60))/1000);
+document.getElementById("countdown").innerHTML=
+"Countdown: "+d+"d "+h+"h "+m+"m "+s+"s 💗";
+},1000);
+
+/* Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(20+Math.random()*30)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+
+/* Button logic */
+let texts=[
+"No",
+"Are you sure?",
+"Really sure?",
+"Pookie please 🥺",
+"Don't do this to me",
+"I'm gonna cry...",
+"You're breaking my heart 💔"
+];
+
+let clickCount=0;
+let yesSize=20;
+let noSize=20;
+
+document.getElementById("yes").onclick=()=>{
+typing("YAYYY 💗 You just made my day Sarilala 🥹 Can't wait ❤️ — urfavgenbo🥹");
+fireworks();
+};
+
+document.getElementById("no").onclick=()=>{
+if(clickCount<texts.length-1){
+clickCount++;
+document.getElementById("question").innerText=texts[clickCount];
+
+yesSize+=14;
+noSize-=3;
+
+document.getElementById("yes").style.fontSize=yesSize+"px";
+document.getElementById("no").style.fontSize=noSize+"px";
+
+/* Run away button */
+let btn=document.getElementById("no");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"vw";
+btn.style.top=Math.random()*80+"vh";
+}
+};
+
+/* Typing message */
+function typing(msg){
+document.body.innerHTML="<h1 id='type'></h1>";
+let i=0;
+function type(){
+if(i<msg.length){
+document.getElementById("type").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,40);
+}
+}
+type();
+}
+
+/* Fireworks */
+function fireworks(){
+for(let i=0;i<80;i++){
+let s=document.createElement("div");
+s.className="spark";
+s.style.left="50vw";
+s.style.top="50vh";
+document.body.appendChild(s);
+
+let angle=Math.random()*2*Math.PI;
+let dist=Math.random()*300;
+
+s.animate([
+{transform:"translate(0,0)"},
+{transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`}
+],{duration:800});
+
+setTimeout(()=>s.remove(),800);
+}
+}
+
+</script>
+</body>
+</html>
+:::
