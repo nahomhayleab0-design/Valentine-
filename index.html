@@ -33,7 +33,6 @@
 
         h1 { font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
 
-        /* The row where photos/GIF live */
         #photoGallery {
             display: flex;
             gap: 5px;
@@ -41,6 +40,7 @@
             justify-content: center;
             min-height: 28vh;
             align-items: center;
+            position: relative;
         }
 
         .photo-img {
@@ -52,13 +52,18 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* Styling for the single sticker GIF */
+        /* Fixed size for the sticker so it doesn't disappear */
         .celebration-sticker {
-            width: 180px !important;
-            height: 180px !important;
-            border: none !important;
-            background: none !important;
+            width: 200px !important;
+            height: 200px !important;
             object-fit: contain;
+            z-index: 2;
+        }
+
+        .fallback-heart {
+            font-size: 5rem;
+            position: absolute;
+            z-index: 1;
         }
 
         .card {
@@ -111,7 +116,6 @@
             border-radius: 20px;
             font-size: 0.85rem;
             cursor: pointer;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -125,9 +129,9 @@
         <h1 id="mainTitle">Sarilala 💖 Will you be my Valentine?</h1>
 
         <div id="photoGallery">
-            <img src="photo1.jpg" class="photo-img" alt="Us 1">
-            <img src="photo2.jpg" class="photo-img" alt="Us 2">
-            <img src="photo3.jpg" class="photo-img" alt="Us 3">
+            <img src="photo1.jpg" class="photo-img">
+            <img src="photo2.jpg" class="photo-img">
+            <img src="photo3.jpg" class="photo-img">
         </div>
 
         <div class="card" id="messageCard">
@@ -165,21 +169,18 @@
 
         function celebrate() {
             song.play().catch(() => {});
-            
-            // Trigger Confetti
             confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, colors: ['#ff69b4', '#ffffff', '#ff1493'] });
 
-            // Update Title
             document.getElementById('mainTitle').innerHTML = "YAYYY! 🥰❤️";
 
-            // REPLACE PHOTOS WITH ONE BIG STICKER
             const photoGallery = document.getElementById('photoGallery');
-            photoGallery.innerHTML = `<img src="https://media.tenor.com/gU9io877jS8AAAAi/milk-and-mocha-bear-couple.gif" class="celebration-sticker">`;
+            // This link is from Google's official emoji server - very stable!
+            photoGallery.innerHTML = `
+                <div class="fallback-heart">❤️</div>
+                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif" class="celebration-sticker">
+            `;
 
-            // Update Message Card
             document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
-            
-            // Hide Buttons
             document.getElementById('idButtonArea').style.display = 'none';
         }
 
