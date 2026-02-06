@@ -31,23 +31,23 @@
             padding: 5px 0;
         }
 
-        h1 { font-size: 1.6rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
+        h1 { font-size: 1.7rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; z-index: 5; }
 
-        /* FIXED PHOTO CONTAINER */
+        /* FIXED HEIGHT AREA FOR PHOTO/GIF */
         #photoGallery {
             display: flex;
             width: 100%;
-            height: 30vh; /* Limits the height so it doesn't overlap text */
+            height: 32vh; /* This prevents the image from growing and covering text */
             justify-content: center;
             align-items: center;
             position: relative;
         }
 
-        /* FIXED PHOTO STYLE */
+        /* Initial photo style */
         .photo-img {
-            height: 100%; /* Keeps it inside the 30vh box */
+            max-height: 100%; /* Stays within the 32vh box */
             width: auto;
-            max-width: 80%;
+            max-width: 85%;
             object-fit: contain; 
             border-radius: 15px;
             border: 3px solid white;
@@ -55,30 +55,31 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
-        /* GIF STICKER STYLE */
+        /* GIF sticker style */
         .celebration-sticker {
-            height: 180px;
-            width: 180px;
+            max-height: 100%;
+            width: auto;
             object-fit: contain;
         }
 
         .card {
             background: white;
             color: #d63384;
-            padding: 15px;
+            padding: 18px;
             border-radius: 20px;
-            width: 90%;
+            width: 92%;
             max-width: 400px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 5;
         }
-        .card p { font-size: 0.95rem; line-height: 1.4; font-weight: 500; }
+        .card p { font-size: 1rem; line-height: 1.4; font-weight: 500; }
 
         .countdown-pill {
             background: rgba(255, 255, 255, 0.3);
             border: 1.5px solid white;
             padding: 8px 15px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
         }
 
@@ -92,10 +93,10 @@
         }
 
         .btn {
-            padding: 10px 35px;
+            padding: 10px 40px;
             border-radius: 50px;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -108,9 +109,9 @@
             background: rgba(255,255,255,0.2);
             border: 1px solid white;
             color: white;
-            padding: 6px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             cursor: pointer;
         }
     </style>
@@ -125,7 +126,7 @@
         <h1 id="mainTitle">Sarilala 💖 Will you be my Valentine?</h1>
 
         <div id="photoGallery">
-            <!-- Only the middle photo is shown, constrained to fit -->
+            <!-- Starting with only the middle photo -->
             <img src="photo2.jpg" class="photo-img">
         </div>
 
@@ -167,11 +168,11 @@
 
             document.getElementById('mainTitle').innerHTML = "YAYYY! 🥰❤️";
 
-            // Replaces photo with an animated emoji (very stable link)
             const photoGallery = document.getElementById('photoGallery');
-            photoGallery.innerHTML = `<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif" class="celebration-sticker">`;
+            // Using the Tenor GIF link from your screenshot
+            photoGallery.innerHTML = `<img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" class="celebration-sticker">`;
 
-            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.1rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
+            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
             document.getElementById('idButtonArea').style.display = 'none';
         }
 
