@@ -31,67 +31,54 @@
             padding: 5px 0;
         }
 
-        h1 { font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
+        h1 { font-size: 1.6rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
 
+        /* FIXED PHOTO CONTAINER */
         #photoGallery {
             display: flex;
             width: 100%;
+            height: 30vh; /* Limits the height so it doesn't overlap text */
             justify-content: center;
-            min-height: 30vh;
             align-items: center;
             position: relative;
         }
 
-        /* The starting photo (middle one) */
+        /* FIXED PHOTO STYLE */
         .photo-img {
-            width: 75%;
-            max-width: 280px;
-            height: auto; 
+            height: 100%; /* Keeps it inside the 30vh box */
+            width: auto;
+            max-width: 80%;
             object-fit: contain; 
-            border-radius: 20px;
+            border-radius: 15px;
             border: 3px solid white;
             background: rgba(255,255,255,0.1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
-        /* The sticker style */
+        /* GIF STICKER STYLE */
         .celebration-sticker {
-            width: 200px !important;
-            height: 200px !important;
-            z-index: 10;
-        }
-
-        /* Fallback heart if GIF fails to load */
-        .fallback-heart {
-            font-size: 80px;
-            position: absolute;
-            z-index: 1;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            height: 180px;
+            width: 180px;
+            object-fit: contain;
         }
 
         .card {
             background: white;
             color: #d63384;
-            padding: 18px;
+            padding: 15px;
             border-radius: 20px;
-            width: 92%;
+            width: 90%;
             max-width: 400px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .card p { font-size: 1rem; line-height: 1.4; font-weight: 500; }
+        .card p { font-size: 0.95rem; line-height: 1.4; font-weight: 500; }
 
         .countdown-pill {
             background: rgba(255, 255, 255, 0.3);
             border: 1.5px solid white;
             padding: 8px 15px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
         }
 
@@ -105,10 +92,10 @@
         }
 
         .btn {
-            padding: 10px 40px;
+            padding: 10px 35px;
             border-radius: 50px;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -121,9 +108,9 @@
             background: rgba(255,255,255,0.2);
             border: 1px solid white;
             color: white;
-            padding: 6px 18px;
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
         }
     </style>
@@ -138,8 +125,8 @@
         <h1 id="mainTitle">Sarilala 💖 Will you be my Valentine?</h1>
 
         <div id="photoGallery">
-            <!-- Only the middle photo is shown initially -->
-            <img src="photo2.jpg" class="photo-img" id="mainImage">
+            <!-- Only the middle photo is shown, constrained to fit -->
+            <img src="photo2.jpg" class="photo-img">
         </div>
 
         <div class="card" id="messageCard">
@@ -176,18 +163,15 @@
 
         function celebrate() {
             song.play().catch(() => {});
-            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, colors: ['#ff69b4', '#ffffff', '#ff1493'] });
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
 
             document.getElementById('mainTitle').innerHTML = "YAYYY! 🥰❤️";
 
+            // Replaces photo with an animated emoji (very stable link)
             const photoGallery = document.getElementById('photoGallery');
-            // This GIF is hosted by Google (notoemoji) and is extremely reliable
-            photoGallery.innerHTML = `
-                <div class="fallback-heart">❤️</div>
-                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif" class="celebration-sticker">
-            `;
+            photoGallery.innerHTML = `<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif" class="celebration-sticker">`;
 
-            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
+            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.1rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
             document.getElementById('idButtonArea').style.display = 'none';
         }
 
