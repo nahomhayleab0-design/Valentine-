@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Sarilala ❤️</title>
-    <!-- Confetti Library -->
+    <!-- Confetti Library for the "Stickers" effect -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --primary-pink: #ff85a2;
-            --white: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        :root { --primary-pink: #ff85a2; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
 
         body {
             background-color: var(--primary-pink);
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Prevents scrolling */
+            overflow: hidden; /* This prevents scrolling */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,23 +22,19 @@
 
         .container {
             width: 95%;
-            height: 98vh;
+            height: 96vh;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 10px;
+            padding: 10px 0;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            line-height: 1.2;
-        }
+        h1 { font-size: 1.7rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
 
-        /* Image Row */
+        /* Photo Row - Fixed to your filenames */
         .photo-row {
             display: flex;
             gap: 8px;
@@ -57,154 +44,160 @@
 
         .photo-row img {
             width: 30%;
-            height: 22vh; /* Set height to fit screen */
+            height: 25vh; /* Fits screen without scrolling */
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 15px;
             border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Message Card */
+        /* Message Box */
         .card {
             background: white;
             color: #d63384;
             padding: 15px;
             border-radius: 20px;
-            width: 100%;
+            width: 90%;
             max-width: 400px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        .card p { font-size: 0.9rem; line-height: 1.4; font-weight: 500; }
 
-        .card h2 { font-size: 1.2rem; margin-bottom: 5px; }
-        .card p { font-size: 0.85rem; line-height: 1.4; font-weight: 500; }
-
-        /* Countdown */
         .countdown-pill {
             background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
-            padding: 8px 20px;
+            border: 1.5px solid white;
+            padding: 8px 15px;
             border-radius: 50px;
-            font-weight: bold;
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
-        /* Buttons */
         .btn-container {
             display: flex;
             gap: 20px;
-            width: 100%;
             justify-content: center;
+            width: 100%;
             position: relative;
             height: 50px;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 10px 40px;
             border-radius: 50px;
             border: none;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.2s;
         }
 
         .btn-yes { background: #ff4d6d; color: white; }
-        .btn-no { background: white; color: #ff4d6d; position: relative; }
+        .btn-no { background: white; color: #ff4d6d; z-index: 10; }
 
-        .music-link {
-            font-size: 0.8rem;
-            text-decoration: none;
+        .music-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
         }
-
     </style>
 </head>
 <body>
+
+    <!-- Updated to your music filename -->
+    <audio id="mySong" loop>
+        <source src="music.mp3.m4a" type="audio/mp4">
+    </audio>
 
     <div class="container">
         <h1 id="mainTitle">Sarilala 💖 Will you be my Valentine?</h1>
 
         <div class="photo-row">
-            <!-- REPLACE THESE URLS WITH YOUR ACTUAL IMAGE LINKS -->
-            <img src="your-photo-1.jpg" alt="Us">
-            <img src="your-photo-2.jpg" alt="Us">
-            <img src="your-photo-3.jpg" alt="Us">
+            <!-- These match your GitHub file names exactly -->
+            <img src="photo1.jpg" alt="Us 1">
+            <img src="photo2.jpg" alt="Us 2">
+            <img src="photo3.jpg" alt="Us 3">
         </div>
 
         <div class="card" id="messageCard">
-            <h2>Hey Sarilala, 💌</h2>
-            <p>I made this just for you because you're special to me 🥺 I love spending time with you and I wanted to ask you in a fun way. No pressure — just vibes, smiles, and good energy 💞</p>
-            <p style="margin-top: 5px;">— urfavgenbo 🥺</p>
+            <p>Hey Sarilala, 💌<br>
+            I made this just for you because you're special to me 🥺 I love spending time with you and I wanted to ask you in a fun way. No pressure — just vibes, smiles, and good energy 💞<br>
+            <b>— urfavgenbo 🥺</b></p>
         </div>
 
-        <div class="countdown-pill" id="timer">
-            Countdown: 00d 00h 00m 00s
-        </div>
+        <div class="countdown-pill" id="timer">Loading...</div>
 
         <div class="btn-container" id="buttonArea">
             <button class="btn btn-yes" onclick="celebrate()">YES! ❤️</button>
             <button class="btn btn-no" id="noBtn">No 😢</button>
         </div>
 
-        <a href="#" class="music-link">🎵 Play Our Song</a>
+        <button class="music-btn" onclick="toggleMusic()">🎵 Play Our Song</button>
     </div>
 
     <script>
-        // 1. COUNTDOWN LOGIC (Set to Feb 14)
-        const targetDate = new Date("Feb 14, 2024 00:00:00").getTime();
+        const song = document.getElementById("mySong");
 
-        setInterval(function() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
+        // 1. DYNAMIC COUNTDOWN (Checks for the NEXT Valentine's Day)
+        function updateTimer() {
+            let now = new Date();
+            let year = now.getFullYear();
+            let target = new Date(`Feb 14, ${year} 00:00:00`).getTime();
+            
+            // If Valentines passed this year, look for next year
+            if (now.getTime() > target) {
+                target = new Date(`Feb 14, ${year + 1} 00:00:00`).getTime();
+            }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            const diff = target - now.getTime();
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById("timer").innerHTML = `Countdown: ${days}d ${hours}h ${mins}m ${secs}s`;
-        }, 1000);
+            document.getElementById("timer").innerHTML = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
 
-        // 2. THE CELEBRATION (Stickers/Confetti)
+        // 2. YES BUTTON ACTION (Confetti Stickers + Music Start)
         function celebrate() {
-            // Burst of confetti
+            // Start music (Browsers allow music after a click)
+            song.play().catch(e => console.log("Music blocked by browser"));
+            
+            // Trigger Confetti "Stickers"
             confetti({
                 particleCount: 150,
                 spread: 70,
                 origin: { y: 0.6 },
-                colors: ['#ff69b4', '#ff1493', '#ffffff']
+                colors: ['#ff69b4', '#ffffff', '#ff1493']
             });
 
-            // Update UI
-            document.getElementById('mainTitle').innerHTML = "YAY! See you soon! ❤️";
-            document.getElementById('messageCard').innerHTML = "<h2>I knew you'd say yes! 🥰</h2><p>You just made my day. Get ready for the best Valentine's ever!</p>";
+            document.getElementById('mainTitle').innerHTML = "YAY! Can't wait! 🥰❤️";
+            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.1rem;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
             document.getElementById('buttonArea').style.display = 'none';
         }
 
         // 3. MOVING NO BUTTON
         const noBtn = document.getElementById('noBtn');
-        noBtn.addEventListener('mouseover', () => {
+        const moveNo = (e) => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
-        });
+        };
+        noBtn.addEventListener('mouseover', moveNo);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNo(); });
 
-        // Also move on touch for mobile users
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        });
+        function toggleMusic() {
+            if (song.paused) song.play();
+            else song.pause();
+        }
     </script>
 </body>
 </html>
