@@ -3,154 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>For Sarilala ❤️</title>
     <style>
-        /* 1. THE LOOK & FEEL */
         body {
-            background: linear-gradient(180deg, #ffafbd 0%, #ffc3a0 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ff85a1; /* Your signature pink */
+            font-family: -apple-system, system-ui, sans-serif;
             margin: 0;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            color: #5c0a1a; /* Dark pink for readability */
+            color: white;
+            min-height: 100vh;
             text-align: center;
+            overflow-x: hidden;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px white; }
+        h1 { font-size: 1.4rem; margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
 
-        /* 2. FIXING THE PHOTOS (No more cropping!) */
-        .photo-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 20px;
+        /* GALLERY: Fits 3 photos neatly */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            width: 95%;
+            max-width: 450px;
+            margin-bottom: 15px;
         }
 
-        .photo-container img {
-            width: 100%;
-            height: 150px; /* Fixed height for uniformity */
-            object-fit: cover; /* This crops but stays centered */
-            border-radius: 15px;
-            border: 4px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        .photo-gallery img {
+            width: 31%; /* Fits 3 side-by-side */
+            height: 120px; /* Uniform height */
+            object-fit: cover; /* Centers the faces */
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* 3. THE MESSAGE BOX */
-        .message-box {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 20px;
+        /* MESSAGE BOX: Highly readable */
+        .message-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #d63384;
+            padding: 15px;
+            border-radius: 18px;
+            width: 90%;
             max-width: 400px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
         }
 
-        .message-box p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .message-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 5px 0;
             font-weight: 500;
-            color: #7d1226; /* Darker red for easy reading */
         }
 
-        /* 4. THE BUTTONS */
-        .btn-group {
-            position: relative;
-            height: 60px;
-            width: 100%;
-            max-width: 300px;
+        #countdown {
+            font-size: 1rem;
+            font-weight: bold;
+            background: rgba(0,0,0,0.1);
+            padding: 6px 15px;
+            border-radius: 50px;
+            margin-bottom: 20px;
         }
 
-        button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        /* BUTTONS */
+        .btn-container { display: flex; gap: 15px; margin-bottom: 30px; }
+        .btn {
+            padding: 12px 24px;
             border-radius: 50px;
             border: none;
-            cursor: pointer;
+            font-size: 1rem;
             font-weight: bold;
-            transition: 0.3s;
-            position: absolute;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { background-color: white; color: #ff4d6d; }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-            left: 10%;
-        }
-
-        #noBtn {
-            background-color: white;
-            color: #ff4d6d;
-            right: 10%;
-        }
-
-        /* SUCCESS SCREEN */
-        #success-message {
+        /* SUCCESS OVERLAY */
+        #success {
             display: none;
-            margin-top: 20px;
-            font-size: 2rem;
-            color: #ff4d6d;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ff4d6d;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
-
-        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <h1>Sarilala ❤️ Will you be my Valentine?</h1>
+    <h1>Sarilala 💖 Will you be my Valentine?</h1>
 
-    <!-- PHOTOS: Replace the 'src' with your actual image links -->
-    <div class="photo-container">
-        <img src="YOUR_PHOTO_LINK_1" alt="us 1">
-        <img src="YOUR_PHOTO_LINK_2" alt="us 2">
-        <img src="YOUR_PHOTO_LINK_3" alt="us 3">
+    <!-- 3 PHOTO GALLERY -->
+    <div class="photo-gallery">
+        <!-- CHANGE FILENAMES HERE -->
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
     </div>
 
-    <div class="message-box" id="mainBox">
-        <p>Hey Sarilala, 💌 <br> I made this just for you because you're special to me 🥺 I love spending time with you and I wanted to ask you in a fun way. No pressure — just vibes, smiles, and good energy 💞</p>
+    <div class="message-card">
+        <p>Hey Sarilala, 💌</p>
+        <p>I made this just for you because you're special to me 🥺 I love spending time with you and I wanted to ask you in a fun way. No pressure — just vibes, smiles, and good energy 💞</p>
         <p>— urfavgenbo 🥺</p>
     </div>
 
-    <div class="btn-group" id="buttonArea">
-        <button id="yesBtn">YES! ❤️</button>
-        <button id="noBtn">No 😢</button>
+    <div id="countdown">Loading...</div>
+
+    <div class="btn-container">
+        <button id="yesBtn" class="btn">YES! ❤️</button>
+        <button id="noBtn" class="btn">No 😢</button>
     </div>
 
-    <div id="success-message">
-        <h2>YAYYY! See you on the 14th! 🥰🌹</h2>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56bm56bm56bm56bm56bm56bm56bm56bm56bm56bm56JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" width="200">
+    <div id="success">
+        <h2 style="font-size: 2.5rem;">YAYYY! 🥰</h2>
+        <p style="font-size: 1.2rem;">See you on the 14th! 🌹</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56bm56bm56bm56bm56bm56bm56bm56bm56bm56bm56JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" width="180" style="border-radius:15px; margin-top:15px;">
     </div>
 
     <script>
-        const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const successMsg = document.getElementById('success-message');
-        const mainBox = document.getElementById('mainBox');
-        const btnArea = document.getElementById('buttonArea');
-        const photoArea = document.querySelector('.photo-container');
+        // 1. Countdown logic
+        const targetDate = new Date("Feb 14, 2025 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
+        }, 1000);
 
-        // Make the 'No' button run away on touch or hover
+        // 2. Runaway No button (Mobile friendly)
+        const noBtn = document.getElementById('noBtn');
+        const moveButton = (e) => {
+            if(e) e.preventDefault();
+            const x = Math.random() * (window.innerWidth - 80);
+            const y = Math.random() * (window.innerHeight - 40);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        };
         noBtn.addEventListener('touchstart', moveButton);
         noBtn.addEventListener('mouseover', moveButton);
 
-        function moveButton() {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-            noBtn.style.position = 'fixed';
-        }
-
-        // What happens when she clicks Yes
-        yesBtn.addEventListener('click', () => {
-            mainBox.classList.add('hidden');
-            btnArea.classList.add('hidden');
-            photoArea.classList.add('hidden');
-            document.querySelector('h1').classList.add('hidden');
-            successMsg.style.display = 'block';
+        // 3. Success reveal
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            document.getElementById('success').style.display = 'flex';
         });
     </script>
 </body>
