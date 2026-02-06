@@ -19,9 +19,9 @@
             overflow-x: hidden;
         }
 
-        h1 { font-size: 1.4rem; margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        h1 { font-size: 1.5rem; margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
 
-        /* GALLERY: Fits 3 photos neatly side-by-side */
+        /* PHOTO GALLERY FIX: Shows the WHOLE photo, no cropping */
         .photo-gallery {
             display: flex;
             justify-content: center;
@@ -32,63 +32,71 @@
         }
 
         .photo-gallery img {
-            width: 31%; 
-            height: 120px; 
-            object-fit: cover; /* This centers faces and keeps heads from being cut off */
+            width: 31%;
+            height: 150px; /* Fixed height for a clean row */
+            object-fit: contain; /* This prevents heads from being cut off */
+            background: rgba(255, 255, 255, 0.2); /* Soft background for photos */
             border-radius: 12px;
             border: 2px solid white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* MESSAGE BOX: Easy to read dark text on light background */
+        /* MESSAGE BOX: Highly readable */
         .message-card {
             background: rgba(255, 255, 255, 0.95);
             color: #d63384;
-            padding: 15px;
-            border-radius: 18px;
-            width: 90%;
+            padding: 18px;
+            border-radius: 20px;
+            width: 88%;
             max-width: 400px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 15px;
         }
 
         .message-card p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.4;
             margin: 5px 0;
             font-weight: 500;
         }
 
+        /* COUNTDOWN */
         #countdown {
             font-size: 1.1rem;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 50px;
             margin-bottom: 20px;
             border: 1px solid white;
         }
 
         /* BUTTONS */
-        .btn-container { display: flex; gap: 15px; margin-bottom: 20px; position: relative; width: 100%; justify-content: center; }
+        .btn-container { 
+            display: flex; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+            justify-content: center; 
+            width: 100%;
+            height: 50px; /* Space for buttons */
+        }
         .btn {
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 10;
         }
         #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: white; color: #ff4d6d; }
+        #noBtn { background-color: white; color: #ff4d6d; transition: 0.1s; }
 
         /* MUSIC PLAYER */
-        .music-player { margin-bottom: 30px; }
-        audio { height: 30px; width: 200px; opacity: 0.8; }
+        .music-area { margin-bottom: 30px; }
+        audio { height: 35px; width: 220px; opacity: 0.9; }
 
-        /* SUCCESS OVERLAY */
+        /* SUCCESS SCREEN */
         #success {
             display: none;
             position: fixed;
@@ -105,7 +113,7 @@
 
     <h1>Sarilala 💖 Will you be my Valentine?</h1>
 
-    <!-- 3 PHOTO GALLERY -->
+    <!-- PHOTOS: Using your exact filenames -->
     <div class="photo-gallery">
         <img src="photo1.jpg" alt="Photo 1">
         <img src="photo2.jpg" alt="Photo 2">
@@ -118,54 +126,54 @@
         <p>— urfavgenbo 🥺</p>
     </div>
 
-    <div id="countdown">Loading Countdown...</div>
+    <div id="countdown">Loading...</div>
 
     <div class="btn-container">
         <button id="yesBtn" class="btn">YES! ❤️</button>
         <button id="noBtn" class="btn">No 😢</button>
     </div>
 
-    <div class="music-player">
+    <div class="music-area">
         <p style="font-size: 0.8rem; margin-bottom: 5px;">🎵 Play Our Song</p>
         <audio controls>
             <source src="music.mp3.m4a" type="audio/mp4">
-            Your browser does not support the audio element.
         </audio>
     </div>
 
+    <!-- Success message that shows after clicking Yes -->
     <div id="success">
-        <h2 style="font-size: 2.5rem;">YAYYY! 🥰</h2>
-        <p style="font-size: 1.2rem;">See you on the 14th! 🌹</p>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56bm56bm56bm56bm56bm56bm56bm56bm56bm56bm56JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" width="180" style="border-radius:15px; margin-top:15px;">
+        <h2 style="font-size: 3rem;">YAYYY! 🥰</h2>
+        <p style="font-size: 1.5rem;">See you on the 14th! 🌹</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56bm56bm56bm56bm56bm56bm56bm56bm56bm56bm56JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" width="200" style="border-radius:20px; margin-top:20px;">
     </div>
 
     <script>
-        // 1. Countdown logic
-        const targetDate = new Date("Feb 14, 2025 00:00:00").getTime();
+        // 1. Countdown Logic (Set to 2026 to fix the negative number issue)
+        const target = new Date("Feb 14, 2026 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const diff = targetDate - now;
+            const diff = target - now;
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+            document.getElementById("countdown").innerHTML = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
         }, 1000);
 
-        // 2. Runaway No button (Mobile friendly)
+        // 2. Runaway No Button Logic
         const noBtn = document.getElementById('noBtn');
-        const moveButton = (e) => {
-            if(e) e.preventDefault();
-            const x = Math.random() * (window.innerWidth - 80);
-            const y = Math.random() * (window.innerHeight - 40);
+        const move = (e) => {
+            if(e) e.preventDefault(); // Prevents clicking on mobile
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         };
-        noBtn.addEventListener('touchstart', moveButton);
-        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', move);
+        noBtn.addEventListener('mouseover', move);
 
-        // 3. Success reveal
+        // 3. Success Screen Logic
         document.getElementById('yesBtn').addEventListener('click', () => {
             document.getElementById('success').style.display = 'flex';
         });
