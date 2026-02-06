@@ -21,7 +21,7 @@
 
         h1 { font-size: 1.4rem; margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
 
-        /* GALLERY: Fits 3 photos neatly */
+        /* GALLERY: Fits 3 photos neatly side-by-side */
         .photo-gallery {
             display: flex;
             justify-content: center;
@@ -32,15 +32,15 @@
         }
 
         .photo-gallery img {
-            width: 31%; /* Fits 3 side-by-side */
-            height: 120px; /* Uniform height */
-            object-fit: cover; /* Centers the faces */
+            width: 31%; 
+            height: 120px; 
+            object-fit: cover; /* This centers faces and keeps heads from being cut off */
             border-radius: 12px;
             border: 2px solid white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* MESSAGE BOX: Highly readable */
+        /* MESSAGE BOX: Easy to read dark text on light background */
         .message-card {
             background: rgba(255, 255, 255, 0.95);
             color: #d63384;
@@ -53,23 +53,24 @@
         }
 
         .message-card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.4;
             margin: 5px 0;
             font-weight: 500;
         }
 
         #countdown {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            background: rgba(0,0,0,0.1);
-            padding: 6px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
             border-radius: 50px;
             margin-bottom: 20px;
+            border: 1px solid white;
         }
 
         /* BUTTONS */
-        .btn-container { display: flex; gap: 15px; margin-bottom: 30px; }
+        .btn-container { display: flex; gap: 15px; margin-bottom: 20px; position: relative; width: 100%; justify-content: center; }
         .btn {
             padding: 12px 24px;
             border-radius: 50px;
@@ -78,9 +79,14 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 10;
         }
         #yesBtn { background-color: #ff4d6d; color: white; }
         #noBtn { background-color: white; color: #ff4d6d; }
+
+        /* MUSIC PLAYER */
+        .music-player { margin-bottom: 30px; }
+        audio { height: 30px; width: 200px; opacity: 0.8; }
 
         /* SUCCESS OVERLAY */
         #success {
@@ -101,7 +107,6 @@
 
     <!-- 3 PHOTO GALLERY -->
     <div class="photo-gallery">
-        <!-- CHANGE FILENAMES HERE -->
         <img src="photo1.jpg" alt="Photo 1">
         <img src="photo2.jpg" alt="Photo 2">
         <img src="photo3.jpg" alt="Photo 3">
@@ -113,11 +118,19 @@
         <p>— urfavgenbo 🥺</p>
     </div>
 
-    <div id="countdown">Loading...</div>
+    <div id="countdown">Loading Countdown...</div>
 
     <div class="btn-container">
         <button id="yesBtn" class="btn">YES! ❤️</button>
         <button id="noBtn" class="btn">No 😢</button>
+    </div>
+
+    <div class="music-player">
+        <p style="font-size: 0.8rem; margin-bottom: 5px;">🎵 Play Our Song</p>
+        <audio controls>
+            <source src="music.mp3.m4a" type="audio/mp4">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 
     <div id="success">
@@ -136,7 +149,7 @@
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
+            document.getElementById("countdown").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
         }, 1000);
 
         // 2. Runaway No button (Mobile friendly)
