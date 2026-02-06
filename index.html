@@ -39,6 +39,7 @@
             gap: 5px;
             width: 100%;
             justify-content: center;
+            min-height: 28vh;
         }
 
         .photo-row img {
@@ -48,7 +49,6 @@
             border-radius: 12px;
             border: 2px solid white;
             background: rgba(255,255,255,0.1);
-            transition: all 0.5s ease;
         }
 
         /* Message Box */
@@ -128,7 +128,7 @@
 
         <div class="countdown-pill" id="timer">Loading...</div>
 
-        <div id="buttonArea" class="btn-container">
+        <div id="idButtonArea" class="btn-container">
             <button class="btn btn-yes" onclick="celebrate()">YES! ❤️</button>
             <button class="btn btn-no" id="noBtn">No 😢</button>
         </div>
@@ -139,12 +139,10 @@
     <script>
         const song = document.getElementById("mySong");
 
-        // Countdown Logic
         function updateTimer() {
             let now = new Date();
             let target = new Date(`Feb 14, ${now.getFullYear()} 00:00:00`).getTime();
             if (now.getTime() > target) target = new Date(`Feb 14, ${now.getFullYear() + 1} 00:00:00`).getTime();
-
             const diff = target - now.getTime();
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -155,38 +153,26 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Celebration Logic
         function celebrate() {
             song.play().catch(() => {});
-            
-            confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#ff69b4', '#ffffff', '#ff1493']
-            });
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, colors: ['#ff69b4', '#ffffff', '#ff1493'] });
 
-            // Change the Header
             document.getElementById('mainTitle').innerHTML = "YAYYY! 🥰❤️";
 
-            // CHANGE PHOTOS TO GIF STICKERS
+            // Updated with high-reliability GIPHY links
             const photoGallery = document.getElementById('photoGallery');
             photoGallery.innerHTML = `
-                <img src="https://media.tenor.com/79S-m6_nI0QAAAAi/mochi-peach.gif" alt="Cute GIF 1">
-                <img src="https://media.tenor.com/z8p_n7Nn0W8AAAAi/milk-and-mocha-hug.gif" alt="Cute GIF 2">
-                <img src="https://media.tenor.com/f0m5Y2vX768AAAAi/cute-love.gif" alt="Cute GIF 3">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYxdmNndXljNnBqdW9hN3FzZmxmaHB4MmVwdXdqZGZzbjAxdTR6ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/HGT6sOosL79mP3xAnS/giphy.gif" alt="GIF 1">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYxdmNndXljNnBqdW9hN3FzZmxmaHB4MmVwdXdqZGZzbjAxdTR6ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/X7f1y6Y1yY47Qf6W6T/giphy.gif" alt="GIF 2">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYxdmNndXljNnBqdW9hN3FzZmxmaHB4MmVwdXdqZGZzbjAxdTR6ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MeIucajx7UFmG375vV/giphy.gif" alt="GIF 3">
             `;
 
-            // Change Message Card
             document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
-            
-            // Hide buttons
-            document.getElementById('buttonArea').style.display = 'none';
+            document.getElementById('idButtonArea').style.display = 'none';
         }
 
-        // Moving No Button Logic
         const noBtn = document.getElementById('noBtn');
-        const moveNo = (e) => {
+        const moveNo = () => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.position = 'fixed';
