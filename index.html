@@ -33,7 +33,7 @@
 
         h1 { font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); font-weight: bold; }
 
-        /* Photo Row - Fixed Cropping */
+        /* Photo Row */
         .photo-row {
             display: flex;
             gap: 5px;
@@ -44,13 +44,14 @@
         .photo-row img {
             width: 31%;
             height: 28vh; 
-            object-fit: contain; /* This stops the cropping/cutting off heads */
+            object-fit: contain; 
             border-radius: 12px;
             border: 2px solid white;
             background: rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
         }
 
-        /* Message Box - More Casual/Close Tone */
+        /* Message Box */
         .card {
             background: white;
             color: #d63384;
@@ -113,7 +114,7 @@
     <div class="container">
         <h1 id="mainTitle">Sarilala 💖 Will you be my Valentine?</h1>
 
-        <div class="photo-row">
+        <div class="photo-row" id="photoGallery">
             <img src="photo1.jpg" alt="Us 1">
             <img src="photo2.jpg" alt="Us 2">
             <img src="photo3.jpg" alt="Us 3">
@@ -165,8 +166,21 @@
                 colors: ['#ff69b4', '#ffffff', '#ff1493']
             });
 
+            // Change the Header
             document.getElementById('mainTitle').innerHTML = "YAYYY! 🥰❤️";
-            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I was really hoping you'd say that! I can't wait to spend the day with you. Best Valentine's ever! 🌹✨</p>";
+
+            // CHANGE PHOTOS TO GIF STICKERS
+            const photoGallery = document.getElementById('photoGallery');
+            photoGallery.innerHTML = `
+                <img src="https://media.tenor.com/79S-m6_nI0QAAAAi/mochi-peach.gif" alt="Cute GIF 1">
+                <img src="https://media.tenor.com/z8p_n7Nn0W8AAAAi/milk-and-mocha-hug.gif" alt="Cute GIF 2">
+                <img src="https://media.tenor.com/f0m5Y2vX768AAAAi/cute-love.gif" alt="Cute GIF 3">
+            `;
+
+            // Change Message Card
+            document.getElementById('messageCard').innerHTML = "<p style='font-size: 1.2rem; padding: 10px;'>I knew you'd say yes! You just made my day. Get ready for the best Valentine's ever! 🌹✨</p>";
+            
+            // Hide buttons
             document.getElementById('buttonArea').style.display = 'none';
         }
 
